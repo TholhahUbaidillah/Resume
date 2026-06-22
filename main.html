@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime CV · Tholhah Ubaidillah</title>
+    <!-- Font Awesome (icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(145deg, #0b0e1a 0%, #1a1f2f 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ---- anime particles / floating elements ---- */
+        .anime-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .sakura {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.25);
+            font-size: 2rem;
+            animation: floatSakura 18s infinite linear;
+        }
+
+        @keyframes floatSakura {
+            0% { transform: translateY(110vh) rotate(0deg) scale(0.6); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(720deg) scale(1.2); opacity: 0; }
+        }
+
+        /* main card – anime glassmorphism */
+        .cv-card {
+            position: relative;
+            z-index: 10;
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(28, 33, 53, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 48px 48px 48px 48px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 215, 150, 0.2);
+            padding: 2.2rem 2.5rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 215, 150, 0.15);
+            animation: cardGlow 4s infinite alternate;
+        }
+
+        @keyframes cardGlow {
+            0% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 200, 120, 0.2); }
+            100% { box-shadow: 0 25px 60px rgba(255, 180, 100, 0.25), 0 0 0 1px rgba(255, 200, 150, 0.5); }
+        }
+
+        /* grid layout */
+        .cv-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        /* ===== LEFT COLUMN ===== */
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .avatar-wrapper {
+            text-align: center;
+            animation: floatY 6s ease-in-out infinite;
+        }
+
+        @keyframes floatY {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .avatar-frame {
+            display: inline-block;
+            padding: 5px;
+            background: linear-gradient(135deg, #f7c948, #ff8a5c);
+            border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%;
+            box-shadow: 0 0 30px rgba(255, 200, 100, 0.3);
+            animation: borderSpin 12s linear infinite;
+        }
+
+        @keyframes borderSpin {
+            0% { border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%; }
+            25% { border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 70% 50% 50% / 40% 60% 30% 70%; }
+            75% { border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%; }
+            100% { border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%; }
+        }
+
+        .avatar-frame img {
+            display: block;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: inherit;
+            background: #1f253b;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+            transition: transform 0.3s;
+        }
+
+        .avatar-frame img:hover {
+            transform: scale(1.02) rotate(2deg);
+        }
+
+        /* name & title */
+        .name-title h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fae3c0;
+            text-shadow: 0 0 12px rgba(255, 180, 80, 0.3);
+            letter-spacing: 1px;
+            line-height: 1.2;
+            margin-top: 0.2rem;
+        }
+
+        .name-title .sub {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #d4b48c;
+            background: rgba(255, 215, 150, 0.08);
+            display: inline-block;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 215, 150, 0.15);
+            margin-top: 6px;
+        }
+
+        .info-block {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 28px;
+            padding: 1.4rem 1.6rem;
+            border-left: 4px solid #f7b731;
+            backdrop-filter: blur(2px);
+            transition: 0.2s;
+        }
+
+        .info-block:hover {
+            background: rgba(0, 0, 0, 0.35);
+            border-left-color: #ff8a5c;
+        }
+
+        .info-block h3 {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            color: #f7c948;
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px dashed rgba(255, 215, 150, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        .info-block h3 i {
+            font-size: 1.2rem;
+            color: #ffb07c;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #e2d5c0;
+            font-size: 0.95rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .info-item i {
+            width: 22px;
+            color: #f7b731;
+        }
+
+        .info-item a {
+            color: #fad7a0;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .info-item a:hover {
+            color: #ffb347;
+            text-shadow: 0 0 10px #ffb34760;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .skill-tag {
+            background: rgba(247, 199, 72, 0.12);
+            color: #f5dbb0;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(247, 199, 72, 0.2);
+            transition: all 0.2s;
+            backdrop-filter: blur(2px);
+        }
+
+        .skill-tag:hover {
+            background: #f7b73130;
+            border-color: #f7b731;
+            transform: scale(1.02);
+            color: #fff0d6;
+        }
+
+        .lang-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.3rem 0;
+            border-bottom: 1px dashed rgba(255, 215, 150, 0.08);
+            color: #d4c5ad;
+        }
+
+        .lang-item span:last-child {
+            color: #f7c948;
+            font-weight: 500;
+        }
+
+        /* ===== RIGHT PANEL ===== */
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .about-box {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 28px;
+            padding: 1.6rem 1.8rem;
+            border-right: 4px solid #f7b731;
+            transition: 0.2s;
+        }
+
+        .about-box:hover {
+            background: rgba(0, 0, 0, 0.3);
+            border-right-color: #ff8a5c;
+        }
+
+        .about-box p {
+            color: #e3d4be;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .exp-block {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 28px;
+            padding: 1.4rem 1.8rem;
+            transition: 0.2s;
+        }
+
+        .exp-block:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .exp-item {
+            margin-bottom: 1.2rem;
+        }
+
+        .exp-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-title {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px 14px;
+            color: #f7c948;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .exp-title small {
+            font-weight: 400;
+            color: #b8a78b;
+            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 0.1rem 0.9rem;
+            border-radius: 30px;
+        }
+
+        .exp-desc {
+            color: #cfc1ab;
+            font-size: 0.95rem;
+            margin-top: 5px;
+            padding-left: 0.4rem;
+            border-left: 2px solid #f7b73140;
+            padding-left: 0.9rem;
+        }
+
+        .exp-desc i {
+            color: #f7b731;
+            margin-right: 6px;
+        }
+
+        .ref-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-top: 6px;
+        }
+
+        .ref-card {
+            background: rgba(255, 215, 150, 0.04);
+            border-radius: 18px;
+            padding: 0.6rem 1.2rem 0.6rem 1.2rem;
+            border: 1px solid rgba(255, 215, 150, 0.08);
+            flex: 1 0 auto;
+            backdrop-filter: blur(2px);
+        }
+
+        .ref-card p {
+            color: #d6c6ae;
+            font-size: 0.9rem;
+            margin: 0.2rem 0;
+        }
+
+        .ref-card .name {
+            color: #f7c948;
+            font-weight: 600;
+        }
+
+        .ref-card .phone {
+            color: #b8a78b;
+            font-size: 0.85rem;
+        }
+
+        /* intern date special */
+        .intern-badge {
+            background: rgba(247, 199, 72, 0.15);
+            border-radius: 60px;
+            padding: 0.2rem 1.2rem;
+            display: inline-block;
+            font-weight: 500;
+            color: #fad7a0;
+            border: 1px solid rgba(247, 199, 72, 0.2);
+            font-size: 0.9rem;
+        }
+
+        /* responsive */
+        @media screen and (max-width: 820px) {
+            .cv-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .cv-card {
+                padding: 1.8rem;
+            }
+            .avatar-frame img {
+                width: 120px;
+                height: 120px;
+            }
+            .name-title h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .cv-card {
+                padding: 1.2rem;
+                border-radius: 32px;
+            }
+            .info-block, .about-box, .exp-block {
+                padding: 1rem 1.2rem;
+            }
+        }
+
+        /* extra anime flair */
+        .anime-stamp {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 0.8rem;
+            color: #ffb07c30;
+            letter-spacing: 2px;
+            writing-mode: vertical-rl;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        .fa-star, .fa-heart {
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.4; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* scroll bar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #191e2e; }
+        ::-webkit-scrollbar-thumb { background: #f7b73160; border-radius: 20px; }
+    </style>
+</head>
+<body>
+    <!-- floating anime elements -->
+    <div class="anime-bg">
+        <div class="sakura" style="left: 5%; font-size: 2.6rem; animation-duration: 22s; animation-delay: 0s;">🌸</div>
+        <div class="sakura" style="left: 20%; font-size: 2rem; animation-duration: 26s; animation-delay: 4s;">🍥</div>
+        <div class="sakura" style="left: 45%; font-size: 3rem; animation-duration: 20s; animation-delay: 2s;">⛩️</div>
+        <div class="sakura" style="left: 70%; font-size: 2.2rem; animation-duration: 28s; animation-delay: 1s;">🎌</div>
+        <div class="sakura" style="left: 88%; font-size: 2.8rem; animation-duration: 24s; animation-delay: 7s;">🌸</div>
+        <div class="sakura" style="left: 12%; font-size: 1.8rem; animation-duration: 30s; animation-delay: 11s;">✨</div>
+        <div class="sakura" style="left: 60%; font-size: 2.4rem; animation-duration: 19s; animation-delay: 5s;">🗡️</div>
+    </div>
+
+    <!-- main card -->
+    <div class="cv-card">
+        <div class="cv-grid">
+            <!-- left column -->
+            <div class="left-panel">
+                <div class="avatar-wrapper">
+                    <div class="avatar-frame">
+                        <!-- profile image (anime style placeholder) -->
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%2321253b'/%3E%3Ccircle cx='100' cy='80' r='45' fill='%23f7c94830' stroke='%23f7c948' stroke-width='2'/%3E%3Ccircle cx='100' cy='80' r='30' fill='%23f7c94840'/%3E%3Ccircle cx='80' cy='72' r='5' fill='%23f5e1c0'/%3E%3Ccircle cx='120' cy='72' r='5' fill='%23f5e1c0'/%3E%3Cpath d='M75 105 Q100 130 125 105' stroke='%23f5e1c0' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Crect x='40' y='140' width='120' height='30' rx='15' fill='%23f7b73120' stroke='%23f7b731' stroke-width='2'/%3E%3Ctext x='70' y='163' font-family='monospace' font-size='14' fill='%23f7c948'%3E%3C/t%3E%3C/svg%3E"
+                             alt="anime avatar" style="background: #1a1f2f;">
+                    </div>
+                </div>
+
+                <div class="name-title">
+                    <h1>Muhammad Tholhah <br>Ubaidillah</h1>
+                    <div class="sub"><i class="fas fa-graduation-cap" style="margin-right: 8px;"></i> Student · IT & Networking</div>
+                </div>
+
+                <!-- contact -->
+                <div class="info-block">
+                    <h3><i class="fas fa-address-card"></i> CONTACT</h3>
+                    <div class="info-item"><i class="fas fa-phone-alt"></i> 011-31947382</div>
+                    <div class="info-item"><i class="fas fa-envelope"></i> <a href="mailto:tholhahubaidillah28@gmail.com">tholhahubaidillah28@gmail.com</a></div>
+                    <div class="info-item"><i class="fas fa-map-pin"></i> No2, Lorong Sungai Karang Mesra 4, 26100, Kuantan, Pahang</div>
+                    <div class="info-item" style="border-bottom: none; margin-top: 4px;"><i class="fas fa-calendar-alt"></i> <span class="intern-badge"><i class="far fa-clock"></i> 2/1/2024 – 19/4/2024</span></div>
+                </div>
+
+                <!-- education -->
+                <div class="info-block">
+                    <h3><i class="fas fa-university"></i> EDUCATION</h3>
+                    <div style="color: #e2d5c0; font-weight: 500;">UNIVERSITI ISLAM PAHANG SULTAN AHMAD SHAH</div>
+                    <div style="color: #c9b698; font-size: 0.9rem; margin-top: 2px;">Diploma Technology Information & Networking (2021-2024)</div>
+                </div>
+
+                <!-- skills -->
+                <div class="info-block">
+                    <h3><i class="fas fa-code"></i> SKILLS</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag"><i class="fab fa-java"></i> Java</span>
+                        <span class="skill-tag"><i class="fas fa-code"></i> Visual Basic</span>
+                        <span class="skill-tag"><i class="fab fa-java"></i> Java FX</span>
+                        <span class="skill-tag"><i class="fas fa-paint-brush"></i> Photoshop</span>
+                        <span class="skill-tag"><i class="fas fa-network-wired"></i> System/Computer</span>
+                    </div>
+                </div>
+
+                <!-- language -->
+                <div class="info-block">
+                    <h3><i class="fas fa-language"></i> LANGUAGE</h3>
+                    <div class="lang-item"><span>Malay</span> <span>Native</span></div>
+                    <div class="lang-item"><span>English</span> <span>Intermediate</span></div>
+                </div>
+            </div>
+
+            <!-- right column -->
+            <div class="right-panel">
+                <!-- about -->
+                <div class="about-box">
+                    <h3 style="color: #f7c948; display: flex; gap: 10px; margin-bottom: 10px;"><i class="fas fa-user-astronaut"></i> ABOUT ME</h3>
+                    <p>Hi, I am a dedicated student who is looking for an internship to increase my skills in a career in information technology and networking. I will try with enthusiasm to do every task given. I am ready to be hired to work with your company.</p>
+                    <div style="margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span style="background: #f7b73120; padding: 0.2rem 1rem; border-radius: 40px; color: #fad7a0; font-size: 0.8rem; border:1px solid #f7b73130;"><i class="fas fa-heart" style="color: #ff7b7b;"></i> アニメ</span>
+                        <span style="background: #f7b73120; padding: 0.2rem 1rem; border-radius: 40px; color: #fad7a0; font-size: 0.8rem; border:1px solid #f7b73130;"><i class="fas fa-laptop-code"></i> ネットワーク</span>
+                    </div>
+                </div>
+
+                <!-- experience & projects -->
+                <div class="exp-block">
+                    <h3 style="color: #f7c948; display: flex; gap: 10px; margin-bottom: 0.8rem;"><i class="fas fa-briefcase"></i> EXPERIENCE & PROJECTS</h3>
+                    <div class="exp-item">
+                        <div class="exp-title"><i class="fas fa-motorcycle" style="color: #f7b731;"></i> DOMINOS FOODS TUN ISMAIL <small>Part-time Rider · 2022-2023</small></div>
+                        <div class="exp-desc"><i class="fas fa-chevron-right"></i> Delivery operations & customer service</div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-title"><i class="fas fa-project-diagram"></i> RFP FOR NETWORKING <small>proposal</small></div>
+                        <div class="exp-desc"><i class="fas fa-chevron-right"></i> RFP to deal with internet network problems in buildings that are not maintained.</div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-title"><i class="fas fa-store"></i> RFP FOR E-CAFEZ <small>proposal</small></div>
+                        <div class="exp-desc"><i class="fas fa-chevron-right"></i> Construct a proposal on the e-cafez platform that aids novice traders in launching a venture to sell products online.</div>
+                    </div>
+                </div>
+
+                <!-- reference -->
+                <div class="exp-block" style="border-left: 4px solid #f7b731;">
+                    <h3 style="color: #f7c948; display: flex; gap: 10px;"><i class="fas fa-address-book"></i> REFERENCE</h3>
+                    <div class="ref-grid">
+                        <div class="ref-card"><span class="name">Puan Nor Fatiha</span><p class="phone"><i class="fas fa-phone"></i> 019-9690037</p></div>
+                        <div class="ref-card"><span class="name">Puan Lydia</span><p class="phone"><i class="fas fa-phone"></i> 011-69739236</p><p style="font-size:0.75rem; color: #b8a78b;"><i class="fas fa-envelope"></i> lydiaatty@unipsas.edu.my</p></div>
+                    </div>
+                </div>
+
+                <!-- extra anime quote -->
+                <div style="display: flex; justify-content: flex-end; margin-top: 0.2rem; opacity: 0.5; color: #b8a78b; font-style: italic; font-size: 0.85rem; gap: 8px;">
+                    <span><i class="fas fa-star" style="color: #f7b731;"></i> 志 · 気 · 魂</span>
+                </div>
+            </div>
+        </div>
+        <!-- tiny stamp -->
+        <div class="anime-stamp">✦ 和 ✦</div>
+    </div>
+</body>
+</html>
